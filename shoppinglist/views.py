@@ -11,6 +11,7 @@ def index(request):
     for shelf in sorted(shelves):
         products = [product for product in shelf.product_set.all()]
         if len(products) > 0:
+            products.sort()
             shelves_template.append((shelf.name, products))
 
     return render_to_response('shoppinglist/index.html', {'shelves': shelves_template})
@@ -24,6 +25,7 @@ def view(request):
     for shelf in sorted(shelves):
         products = [product for product in shelf.product_set.all() if product.is_needed()]
         if len(products) > 0:
+            products.sort()
             shelves_needed.append((shelf.name, products))
 
     return render_to_response('shoppinglist/view.html', {'shelves_needed': shelves_needed})
