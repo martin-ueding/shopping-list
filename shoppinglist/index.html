@@ -9,7 +9,7 @@
     <h2>{{ shelf_name }}</h2>
     <table>
     {% for product in products %}
-    <tr>
+    <tr id="product{{ product.id }}">
         <td>{{ product.name }}</td>
         <td>{{ product.desired_amount }}</td>
         <td><a href="change/{{ product.id }}/1">+</a></td>
