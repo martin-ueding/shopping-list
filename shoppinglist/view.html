@@ -2,16 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title></title>
+        <title>Einkaufszettel</title>
+        <link rel="stylesheet" type="text/css" href="/static/main.css" />
     </head>
     <body>
+    <h1>Einkaufszettel</h1>
     {% for shelf_name, products in shelves_needed %}
     <h2>{{ shelf_name }}</h2>
     <table>
     {% for product in products %}
-    <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.desired_amount }}</td>
+    <tr id="product{{ product.id }}">
+        <td class="name">{{ product.name }}</td>
+        <td class="amount">{{ product.desired_amount }}</td>
     </tr>
     {% endfor %}
     </table>

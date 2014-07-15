@@ -2,20 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title></title>
+        <title>Alle Produkte</title>
+        <link rel="stylesheet" type="text/css" href="/static/main.css" />
     </head>
     <body>
+    <h1>Alle Produkte</h1>
     {% for shelf_name, products in shelves %}
     <h2>{{ shelf_name }}</h2>
     <table>
     {% for product in products %}
     <tr id="product{{ product.id }}">
-        <td>{{ product.name }}</td>
-        <td>{{ product.desired_amount }}</td>
-        <td><a href="change/{{ product.id }}/1">+</a></td>
+        <td class="name">{{ product.name }}</td>
+        <td class="amount">{{ product.desired_amount }}</td>
+        <td><a href="change/{{ product.id }}/1" class="plus">+</a></td>
         <td>
             {% if product.desired_amount > 0 %}
-            <a href="change/{{ product.id }}/-1">−</a>
+            <a href="change/{{ product.id }}/-1" class="minus">−</a>
             {% endif %}
         </td>
     </tr>

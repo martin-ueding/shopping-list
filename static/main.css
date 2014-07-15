@@ -1,0 +1,43 @@
+body {
+    font-family: sans;
+}
+
+.name {
+    width: 300px;
+}
+
+.amount {
+    width: 50px;
+    text-align: right;
+}
+
+.plus, .minus {
+    padding: 0px 20px;
+    text-decoration: none;
+}
+
+.plus {
+    background-color: #083D0E;
+    color: #1DDC33;
+}
+
+.minus {
+    background-color: #5F0B0B;
+    color: #F00;
+}
+
+tr:nth-child(odd) {
+    background-color: #ECECEC;
+}
+
+tr:nth-child(even) {
+    background-color: #DADADA;
+}
+
+h1 {
+    font-size: 140%;
+}
+
+h2 {
+    font-size: 120%;
+}
