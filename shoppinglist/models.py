@@ -8,6 +8,8 @@
 Models.
 '''
 
+import json
+
 from django.db import models
 
 # Create your models here.
@@ -41,3 +43,21 @@ class Product(models.Model):
 
     def is_needed(self):
         return self.desired_amount > 0
+
+def import_json(filename):
+    with open(filename) as f:
+        data = json.load(f)
+
+    for shelf, products in data.iteritems():
+        shelf_db_list = Shelf.objects.filter(name__icontains=shelf)
+        if len(shelf_db_list) == 1:
+            shelf_db = shelf_db_list[0]
+        else:
+            shelf_db = Shelf(name=shelf, rank=0)
+            shelf_db.save()
+
+        for product in products:
+            p = Product(name=product, shelf=shelf_db)
+            p.save()
+
+
