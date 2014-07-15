@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title></title>
+    </head>
+    <body>
+    {% for shelf_name, products in shelves_needed %}
+    <h2>{{ shelf_name }}</h2>
+    <table>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.desired_amount }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    {% endfor %}
+    </body>
+</html>
