@@ -26,7 +26,7 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIRS = ['/home/mu/Projekte/shoppinglistsite/']
+TEMPLATE_DIRS = [BASE_DIR]
 
 
 # Application definition
