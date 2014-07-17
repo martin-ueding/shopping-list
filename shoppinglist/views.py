@@ -36,4 +36,4 @@ def change(request, product_id, delta):
     if product.desired_amount + delta >= 0:
         product.desired_amount += delta
         product.save()
-    return redirect('/shopping/#product{}'.format(product_id))
+    return redirect('../../#product{}'.format(product_id))
