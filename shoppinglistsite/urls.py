@@ -8,8 +8,8 @@ urlpatterns = patterns('',
                        # url(r'^$', 'shoppinglistsite.views.home', name='home'),
                        # url(r'^blog/', include('blog.urls')),
 
-                       url(r'^admin/', include(admin.site.urls)),
-                       url(r'^shopping/$', 'shoppinglist.views.index'),
-                       url(r'^shopping/view$', 'shoppinglist.views.view'),
-                       url(r'^shopping/change/(?P<product_id>\d+)/(?P<delta>-?\d+)$', 'shoppinglist.views.change'),
+                       url(r'admin/', include(admin.site.urls)),
+                       url(r'view/$', 'shoppinglist.views.view'),
+                       url(r'change/(?P<product_id>\d+)/(?P<delta>-?\d+)$', 'shoppinglist.views.change'),
+                       url(r'^$', 'shoppinglist.views.index'),
                       )
