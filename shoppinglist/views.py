@@ -1,4 +1,7 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
+from django.template import RequestContext
 
 from shoppinglist.models import Product, Shelf
 
@@ -10,11 +13,12 @@ def index(request):
 
     for shelf in sorted(shelves):
         products = [product for product in shelf.product_set.all()]
-        if len(products) > 0:
-            products.sort()
-            shelves_template.append((shelf.name, products))
+        products.sort()
+        shelves_template.append((shelf.name, shelf.id, products))
 
-    return render_to_response('shoppinglist/index.html', {'shelves': shelves_template})
+    return render_to_response('shoppinglist/index.html',
+                              {'shelves': shelves_template},
+                              context_instance=RequestContext(request))
 
 def view(request):
     #needed = Product.objects.filter(desired_amount__gt=0)
@@ -28,7 +32,8 @@ def view(request):
             products.sort()
             shelves_needed.append((shelf.name, products))
 
-    return render_to_response('shoppinglist/view.html', {'shelves_needed': shelves_needed})
+    return render_to_response('shoppinglist/view.html',
+                              {'shelves_needed': shelves_needed})
 
 def change(request, product_id, delta):
     product = Product.objects.filter(id=product_id)[0]
@@ -37,3 +42,14 @@ def change(request, product_id, delta):
         product.desired_amount += delta
         product.save()
     return redirect('../../#product{}'.format(product_id))
+
+def add_product(request, shelf_id):
+    shelf = Shelf.objects.filter(id=shelf_id)[0]
+    product = Product(name=request.POST['name'], shelf=shelf)
+    product.save()
+    return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+
+def add_shelf(request):
+    shelf = Shelf(name=request.POST['name'], rank=-1)
+    shelf.save()
+    return HttpResponseRedirect(reverse('shoppinglist.views.index'))

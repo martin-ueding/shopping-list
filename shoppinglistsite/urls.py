@@ -12,4 +12,6 @@ urlpatterns = patterns('',
                        url(r'view/$', 'shoppinglist.views.view'),
                        url(r'change/(?P<product_id>\d+)/(?P<delta>-?\d+)$', 'shoppinglist.views.change'),
                        url(r'^$', 'shoppinglist.views.index'),
+                       url(r'product/add/(?P<shelf_id>\d+)$', 'shoppinglist.views.add_product'),
+                       url(r'shelf/add$', 'shoppinglist.views.add_shelf'),
                       )

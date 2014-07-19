@@ -19,7 +19,7 @@ body.small td {
     text-align: right;
 }
 
-.plus, .minus {
+.plus, .minus, .minus-inactive {
     padding: 0px 20px;
     text-decoration: none;
 }
@@ -34,12 +34,21 @@ body.small td {
     color: #F00;
 }
 
+.minus-inactive {
+    background-color: hsl(0, 0%, 80%);
+    color: hsl(0, 0%, 100%);
+}
+
 tr:nth-child(odd) {
-    background-color: #ECECEC;
+    background-color: hsl(0, 0%, 80%);
 }
 
 tr:nth-child(even) {
-    background-color: #DADADA;
+    background-color: hsl(0, 0%, 90%);
+}
+
+th {
+    background-color: hsl(0, 0%, 60%);
 }
 
 h1 {
@@ -48,4 +57,14 @@ h1 {
 
 h2 {
     font-size: 120%;
+}
+
+div.form {
+    margin: 10px 0;
+}
+
+div.shelf {
+    border: 1px solid gray;
+    margin-bottom: 20px;
+    padding: 15px;
 }
