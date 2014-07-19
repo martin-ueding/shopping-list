@@ -44,12 +44,16 @@ def change(request, product_id, delta):
     return redirect('../../#product{}'.format(product_id))
 
 def add_product(request, shelf_id):
-    shelf = Shelf.objects.filter(id=shelf_id)[0]
-    product = Product(name=request.POST['name'], shelf=shelf)
-    product.save()
+    name = request.POST['name']
+    if len(name) > 0:
+        shelf = Shelf.objects.filter(id=shelf_id)[0]
+        product = Product(name=name, shelf=shelf)
+        product.save()
     return HttpResponseRedirect(reverse('shoppinglist.views.index'))
 
 def add_shelf(request):
-    shelf = Shelf(name=request.POST['name'], rank=-1)
-    shelf.save()
+    name = request.POST['name']
+    if len(name) > 0:
+        shelf = Shelf(name=name, rank=-1)
+        shelf.save()
     return HttpResponseRedirect(reverse('shoppinglist.views.index'))
