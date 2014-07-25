@@ -21,7 +21,6 @@ def index(request):
                               context_instance=RequestContext(request))
 
 def view(request):
-    #needed = Product.objects.filter(desired_amount__gt=0)
     shelves = Shelf.objects.all()
 
     shelves_needed = []
@@ -57,3 +56,27 @@ def add_shelf(request):
         shelf = Shelf(name=name, rank=-1)
         shelf.save()
     return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+
+def aftermath(request):
+    resetted = []
+    if 'product_ids' in request.POST:
+        for product_id in request.POST.getlist('product_ids'):
+            id = int(product_id)
+
+            product = Product.objects.filter(id=id)[0]
+            product.desired_amount = 0
+            product.save()
+            resetted.append(product.name)
+
+            
+
+    products = [product for product in Product.objects.all() if product.is_needed()]
+    if len(products) > 0:
+        products.sort()
+
+
+
+    return render_to_response('shoppinglist/aftermath.html',
+                              {'products': products, 'resetted': resetted},
+                              context_instance=RequestContext(request))
+
