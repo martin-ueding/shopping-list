@@ -2,9 +2,15 @@
 
 {% block content %}
 <h1>Einkaufszettel</h1>
+{% if products|length > 0 %}
 <form action="" method="post">
     {% csrf_token %}
     <table>
+        <tr>
+            <th>Produkt</th>
+            <th>#</th>
+            <th>gekauft</th>
+        </tr>
         {% for product in products %}
         <tr id="product{{ product.id }}">
             <td class="name">{{ product.name }}</td>
@@ -14,13 +20,9 @@
         {% endfor %}
     </table>
     <input type="submit" value="als erledigt markieren" />
-
-    {% if resetted|length > 0 %}
-    <ul>
-        {% for product in resetted %}
-        <li>{{ product }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
 </form>
+{% else %}
+<p>Es sind keine Produkte ausgewählt. Es können also auch keine Produkte
+abgehakt werden.</p>
+{% endif %}
 {% endblock %}
