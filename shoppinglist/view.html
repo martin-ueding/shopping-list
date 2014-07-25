@@ -1,22 +1,17 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Einkaufszettel</title>
-        <link rel="stylesheet" type="text/css" href="/static/main.css" />
-    </head>
-    <body class="small">
-    <h1>Einkaufszettel</h1>
-    {% for shelf_name, products in shelves_needed %}
-    <h2>{{ shelf_name }}</h2>
-    <table>
+{% extends "shoppinglist/base.html" %}
+
+{% block content %}
+<h1>Einkaufszettel</h1>
+{% for shelf_name, products in shelves_needed %}
+<h2>{{ shelf_name }}</h2>
+<table>
     {% for product in products %}
     <tr id="product{{ product.id }}">
         <td class="name">{{ product.name }}</td>
         <td class="amount">{{ product.desired_amount }}</td>
     </tr>
     {% endfor %}
-    </table>
-    {% endfor %}
-    </body>
-</html>
+</table>
+{% endfor %}
+
+{% endblock %}

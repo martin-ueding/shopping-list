@@ -1,60 +1,49 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Alle Produkte</title>
-        <link rel="stylesheet" type="text/css" href="/static/main.css" />
-    </head>
-    <body>
+{% extends "shoppinglist/base.html" %}
 
-	    <a href="view/">Einkaufszettel zeigen</a>
-
-	    <a href="aftermath/">Produkte abhaken</a>
-
-    <h1>Alle Produkte</h1>
-    {% for shelf_name, shelf_id, products in shelves %}
-    <div class="shelf">
-        <h2>{{ shelf_name }}</h2>
-        {% if products|length == 0 %}
-        <p><em>(keine Produkte)</em></p>
-        {% else %}
-        <table>
-            <tr>
-                <th>Produkt</th>
-                <th>#</th>
-                <th colspan="2">ändern</th>
-            </tr>
-            {% for product in products %}
-            <tr id="product{{ product.id }}">
-                <td class="name">{{ product.name }}</td>
-                <td class="amount">{{ product.desired_amount }}</td>
-                <td><a href="change/{{ product.id }}/1" class="plus">+</a></td>
-                <td>
-                    {% if product.desired_amount > 0 %}
-                    <a href="change/{{ product.id }}/-1" class="minus">−</a>
-                    {% else %}
-                    <span class="minus-inactive">−</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
-        {% endif %}
-
-        <div class="form">
-            <form action="product/add/{{ shelf_id }}" method="post">
-                {% csrf_token %}
-                Neues Produkt: <input type="text" name="name" /> <input type="submit" value="erstellen" />
-            </form>
-        </div>
-    </div>
-    {% endfor %}
+{% block content %}
+<h1>Alle Produkte</h1>
+{% for shelf_name, shelf_id, products in shelves %}
+<div class="shelf">
+    <h2>{{ shelf_name }}</h2>
+    {% if products|length == 0 %}
+    <p><em>(keine Produkte)</em></p>
+    {% else %}
+    <table>
+        <tr>
+            <th>Produkt</th>
+            <th>#</th>
+            <th colspan="2">ändern</th>
+        </tr>
+        {% for product in products %}
+        <tr id="product{{ product.id }}">
+            <td class="name">{{ product.name }}</td>
+            <td class="amount">{{ product.desired_amount }}</td>
+            <td><a href="change/{{ product.id }}/1" class="plus">+</a></td>
+            <td>
+                {% if product.desired_amount > 0 %}
+                <a href="change/{{ product.id }}/-1" class="minus">−</a>
+                {% else %}
+                <span class="minus-inactive">−</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
 
     <div class="form">
-        <form action="shelf/add" method="post">
+        <form action="product/add/{{ shelf_id }}" method="post">
             {% csrf_token %}
-            Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
+            Neues Produkt: <input type="text" name="name" /> <input type="submit" value="erstellen" />
         </form>
     </div>
-    </body>
-</html>
+</div>
+{% endfor %}
+
+<div class="form">
+    <form action="shelf/add" method="post">
+        {% csrf_token %}
+        Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
+    </form>
+</div>
+{% endblock %}

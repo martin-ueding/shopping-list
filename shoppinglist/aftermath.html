@@ -1,32 +1,26 @@
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>Einkaufszettel</title>
-        <link rel="stylesheet" type="text/css" href="/static/main.css" />
-    </head>
-    <body class="small">
-    <h1>Einkaufszettel</h1>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {% for product in products %}
-            <tr id="product{{ product.id }}">
-                <td class="name">{{ product.name }}</td>
-                <td class="amount">{{ product.desired_amount }}</td>
-                <td><input type="checkbox" name="product_ids" value="{{ product.id }}" checked="checked" /></td>
-            </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" value="als erledigt markieren" />
+{% extends "shoppinglist/base.html" %}
 
-        {% if resetted|length > 0 %}
-        <ul>
-            {% for product in resetted %}
-            <li>{{ product }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </form>
-    </body>
-</html>
+{% block content %}
+<h1>Einkaufszettel</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {% for product in products %}
+        <tr id="product{{ product.id }}">
+            <td class="name">{{ product.name }}</td>
+            <td class="amount">{{ product.desired_amount }}</td>
+            <td><input type="checkbox" name="product_ids" value="{{ product.id }}" checked="checked" /></td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit" value="als erledigt markieren" />
+
+    {% if resetted|length > 0 %}
+    <ul>
+        {% for product in resetted %}
+        <li>{{ product }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</form>
+{% endblock %}

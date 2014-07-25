@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Alle Produkte{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="/static/main.css" />
+    </head>
+    <body>
+
+    <div id="navigation">
+        <ul>
+            <li><a href="{% url 'shoppinglist.views.view' %}">Einkaufszettel zeigen</a></li>
+            <li><a href="{% url 'shoppinglist.views.aftermath' %}">Produkte abhaken</a></li>
+        </ul>
+    </div>
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    </body>
+</html>
