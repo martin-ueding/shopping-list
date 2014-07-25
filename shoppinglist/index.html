@@ -14,14 +14,14 @@ function changeAmount(field, delta) {
 </script>
 
 <h1>Alle Produkte</h1>
-<form action="{% url 'shoppinglist.views.update_numbers' %}" method="post">
+<form action="{% url shoppinglist.views.update_numbers %}" method="post">
     {% csrf_token %}
     {% for shelf_name, shelf_id, products in shelves %}
     <div class="shelf">
         <div class="shelf-title">
             <span class="shelf-title">{{ shelf_name }}</span>
             <span class="add-product">
-                <a href="{% url 'shoppinglist.views.add_product' shelf_id %}">+</a>
+                <a href="{% url shoppinglist.views.add_product shelf_id %}">+</a>
             </span>
         </div>
         {% if products|length == 0 %}
@@ -62,7 +62,7 @@ function changeAmount(field, delta) {
 <hr />
 
 <div class="form">
-    <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
+    <form action="{% url shoppinglist.views.add_shelf %}" method="post">
         {% csrf_token %}
         Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
     </form>
