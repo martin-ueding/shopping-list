@@ -18,10 +18,10 @@
         <tr id="product{{ product.id }}">
             <td class="name">{{ product.name }}</td>
             <td class="amount">{{ product.desired_amount }}</td>
-            <td><a href="change/{{ product.id }}/1" class="plus">+</a></td>
+            <td><a href="{% url 'shoppinglist.views.change' product.id 1 %}" class="plus">+</a></td>
             <td>
                 {% if product.desired_amount > 0 %}
-                <a href="change/{{ product.id }}/-1" class="minus">−</a>
+                <a href="{% url 'shoppinglist.views.change' product.id -1 %}" class="minus">−</a>
                 {% else %}
                 <span class="minus-inactive">−</span>
                 {% endif %}
@@ -32,7 +32,7 @@
     {% endif %}
 
     <div class="form">
-        <form action="product/add/{{ shelf_id }}" method="post">
+        <form action="{% url 'shoppinglist.views.add_product' shelf_id %}" method="post">
             {% csrf_token %}
             Neues Produkt: <input type="text" name="name" /> <input type="submit" value="erstellen" />
         </form>
@@ -41,7 +41,7 @@
 {% endfor %}
 
 <div class="form">
-    <form action="shelf/add" method="post">
+    <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
         {% csrf_token %}
         Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
     </form>
