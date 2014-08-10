@@ -5,7 +5,9 @@ from django.template import RequestContext
 
 from shoppinglist.models import Product, Shelf
 
-# Create your views here.
+import re
+
+ID_PATTERN = re.compile(r'id-(\d+)')
 
 def index(request):
     shelves = Shelf.objects.all()
@@ -34,14 +36,6 @@ def view(request):
     return render_to_response('shoppinglist/view.html',
                               {'shelves_needed': shelves_needed})
 
-def change(request, product_id, delta):
-    product = Product.objects.filter(id=product_id)[0]
-    delta = int(delta)
-    if product.desired_amount + delta >= 0:
-        product.desired_amount += delta
-        product.save()
-    return redirect('../../#product{}'.format(product_id))
-
 def add_product(request, shelf_id):
     name = request.POST['name']
     if len(name) > 0:
@@ -68,15 +62,28 @@ def aftermath(request):
             product.save()
             resetted.append(product.name)
 
-            
-
     products = [product for product in Product.objects.all() if product.is_needed()]
     if len(products) > 0:
         products.sort()
-
-
 
     return render_to_response('shoppinglist/aftermath.html',
                               {'products': products, 'resetted': resetted},
                               context_instance=RequestContext(request))
 
+def update_numbers(request):
+    for key in request.POST:
+        match = ID_PATTERN.match(key)
+        if not match:
+            continue
+
+        product_id = int(match.group(1))
+        product = Product.objects.filter(id=product_id)[0]
+        desired_amount = int(request.POST[key])
+
+        if desired_amount < 0:
+            continue
+
+        if product.desired_amount != desired_amount:
+            product.desired_amount = desired_amount
+            product.save()
+    return HttpResponseRedirect(reverse('shoppinglist.views.index'))

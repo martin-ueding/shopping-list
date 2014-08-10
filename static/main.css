@@ -19,26 +19,6 @@ body.small td {
     text-align: right;
 }
 
-.plus, .minus, .minus-inactive {
-    padding: 0px 20px;
-    text-decoration: none;
-}
-
-.plus {
-    background-color: #083D0E;
-    color: #1DDC33;
-}
-
-.minus {
-    background-color: #5F0B0B;
-    color: #F00;
-}
-
-.minus-inactive {
-    background-color: hsl(0, 0%, 80%);
-    color: hsl(0, 0%, 100%);
-}
-
 tr:nth-child(odd) {
     background-color: hsl(0, 0%, 80%);
 }
@@ -66,5 +46,38 @@ div.form {
 div.shelf {
     border: 1px solid gray;
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 0px;
+    width: 500px;
+}
+
+div.shelf table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+div.shelf-title {
+    width: 100%;
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 100%);
+    display: block;
+    overflow: hidden;
+}
+
+div.shelf-title span.shelf-title {
+    padding: 2px 5px;
+    font-weight: bold;
+    display: block;
+    float: left;
+}
+
+div.shelf-title span.add-product {
+    display: block;
+    float: right;
+}
+
+div.shelf-title span.add-product a {
+    padding: 4px 10px;
+    text-decoration: none;
+    background-color: hsl(100, 50%, 50%);
+    color: hsl(100, 50%, 80%);
 }

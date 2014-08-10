@@ -2,43 +2,41 @@
 
 {% block content %}
 <h1>Alle Produkte</h1>
-{% for shelf_name, shelf_id, products in shelves %}
-<div class="shelf">
-    <h2>{{ shelf_name }}</h2>
-    {% if products|length == 0 %}
-    <p><em>(keine Produkte)</em></p>
-    {% else %}
-    <table>
-        <tr>
-            <th>Produkt</th>
-            <th>#</th>
-            <th colspan="2">ändern</th>
-        </tr>
-        {% for product in products %}
-        <tr id="product{{ product.id }}">
-            <td class="name">{{ product.name }}</td>
-            <td class="amount">{{ product.desired_amount }}</td>
-            <td><a href="{% url 'shoppinglist.views.change' product.id 1 %}" class="plus">+</a></td>
-            <td>
-                {% if product.desired_amount > 0 %}
-                <a href="{% url 'shoppinglist.views.change' product.id -1 %}" class="minus">−</a>
-                {% else %}
-                <span class="minus-inactive">−</span>
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% endif %}
-
-    <div class="form">
-        <form action="{% url 'shoppinglist.views.add_product' shelf_id %}" method="post">
-            {% csrf_token %}
-            Neues Produkt: <input type="text" name="name" /> <input type="submit" value="erstellen" />
-        </form>
+<form action="{% url 'shoppinglist.views.update_numbers' %}" method="post">
+    {% csrf_token %}
+    {% for shelf_name, shelf_id, products in shelves %}
+    <div class="shelf">
+        <div class="shelf-title">
+            <span class="shelf-title">{{ shelf_name }}</span>
+            <span class="add-product">
+                <a href="{% url 'shoppinglist.views.add_product' shelf_id %}">+</a>
+            </span>
+        </div>
+        {% if products|length == 0 %}
+        <p><em>(keine Produkte)</em></p>
+        {% else %}
+        <table>
+            <tr>
+                <th>Produkt</th>
+                <th>#</th>
+            </tr>
+            {% for product in products %}
+            <tr id="product{{ product.id }}">
+                <td class="name">{{ product.name }}</td>
+                <td class="amount">
+                    <input class="small" type="number" min="0" value="{{ product.desired_amount }}" name="id-{{ product.id }}" />
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
+
+    <input type="submit" value="Übernehmen" />
+</form>
+
+<hr />
 
 <div class="form">
     <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
