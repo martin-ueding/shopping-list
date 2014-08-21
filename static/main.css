@@ -81,3 +81,7 @@ div.shelf-title span.add-product a {
     background-color: hsl(100, 50%, 50%);
     color: hsl(100, 50%, 80%);
 }
+
+.desired {
+    font-weight: bold;
+}

@@ -22,7 +22,11 @@
                 <th>Änderung</th>
             </tr>
             {% for product in products %}
-            <tr id="product{{ product.id }}">
+            <tr id="product{{ product.id }}"
+                {% if product.desired_amount > 0 %}
+                class="desired"
+                {% endif %}
+                >
                 <td class="name">{{ product.name }}</td>
                 <td class="amount">{{ product.desired_amount }}</td>
                 <td>
