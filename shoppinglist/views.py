@@ -78,12 +78,11 @@ def update_numbers(request):
 
         product_id = int(match.group(1))
         product = Product.objects.filter(id=product_id)[0]
-        desired_amount = int(request.POST[key])
+        delta = int(request.POST[key])
 
-        if desired_amount < 0:
+        if delta == 0:
             continue
 
-        if product.desired_amount != desired_amount:
-            product.desired_amount = desired_amount
-            product.save()
+        product.desired_amount += delta
+        product.save()
     return HttpResponseRedirect(reverse('shoppinglist.views.index'))

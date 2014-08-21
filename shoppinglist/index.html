@@ -19,12 +19,14 @@
             <tr>
                 <th>Produkt</th>
                 <th>#</th>
+                <th>Änderung</th>
             </tr>
             {% for product in products %}
             <tr id="product{{ product.id }}">
                 <td class="name">{{ product.name }}</td>
-                <td class="amount">
-                    <input class="small" type="number" min="0" value="{{ product.desired_amount }}" name="id-{{ product.id }}" />
+                <td class="amount">{{ product.desired_amount }}</td>
+                <td>
+                    <input class="small" type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" />
                 </td>
             </tr>
             {% endfor %}
