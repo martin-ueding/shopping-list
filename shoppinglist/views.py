@@ -47,13 +47,15 @@ class ProductForm(ModelForm):
         model = Product
 
 def add_product(request, shelf_id):
+    shelf = Shelf.objects.filter(id=shelf_id)[0]
+
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('shoppinglist.views.index'))
     else:
-        form = ProductForm()
+        form = ProductForm(initial={'shelf': shelf})
 
     return render_to_response(
         'shoppinglist/new-product.html',
