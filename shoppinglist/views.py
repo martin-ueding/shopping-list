@@ -1,11 +1,17 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# Copyright © 2014 Martin Ueding <dev@martin-ueding.de>
+
+import re
+
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
+from django.forms import ModelForm
 
 from shoppinglist.models import Product, Shelf
-
-import re
 
 ID_PATTERN = re.compile(r'id-(\d+)')
 
@@ -36,13 +42,24 @@ def view(request):
     return render_to_response('shoppinglist/view.html',
                               {'shelves_needed': shelves_needed})
 
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+
 def add_product(request, shelf_id):
-    name = request.POST['name']
-    if len(name) > 0:
-        shelf = Shelf.objects.filter(id=shelf_id)[0]
-        product = Product(name=name, shelf=shelf)
-        product.save()
-    return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+    else:
+        form = ProductForm()
+
+    return render_to_response(
+        'shoppinglist/new-product.html',
+        {'form': form},
+        context_instance=RequestContext(request),
+    )
 
 def add_shelf(request):
     name = request.POST['name']
