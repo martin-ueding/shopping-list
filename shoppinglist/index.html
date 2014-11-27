@@ -1,6 +1,18 @@
 {% extends "shoppinglist/base.html" %}
 
 {% block content %}
+
+<script type="text/javascript">
+// https://stackoverflow.com/a/9186427
+
+function changeAmount(field, delta) {
+    var value = parseInt(document.getElementById(field).value, 10);
+    value = isNaN(value) ? 0 : value;
+    value += delta;
+    document.getElementById(field).value = value;
+}
+</script>
+
 <h1>Alle Produkte</h1>
 <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post">
     {% csrf_token %}
@@ -30,7 +42,12 @@
                 <td class="name">{{ product.name }}</td>
                 <td class="amount">{{ product.desired_amount }}</td>
                 <td>
-                    <input class="small" type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" />
+                    <nobr>
+                    <input class="small" type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}"/>
+
+                    <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" />
+                    <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="-" />
+                    </nobr>
                 </td>
             </tr>
             {% endfor %}
