@@ -10,13 +10,8 @@ body.small td {
     border-bottom: 1px solid gray;
 }
 
-.name {
-    //width: 300px;
-}
-
-.amount {
-    //width: 50px;
-    text-align: right;
+td, th {
+    padding: 2px 2px;
 }
 
 tr:nth-child(odd) {
@@ -108,7 +103,7 @@ div.shelf-title span.add-product a {
     text-decoration: none;
 }
 
-input[type=button] {
+input[type=button], input[type=submit] {
     min-width: 10mm;
     min-height: 10mm;
     font-size: 7mm;
@@ -118,7 +113,11 @@ input.small {
     width: 30px;
 }
 
-td.amount, td.change, td.plus, td.minus {
+.name {
+    text-align: left;
+}
+
+.amount, .change, .plus, .minus {
     text-align: center;
     width: 12mm;
 }

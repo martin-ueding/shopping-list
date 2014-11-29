@@ -29,11 +29,11 @@ function changeAmount(field, delta) {
         {% else %}
         <table>
             <tr>
-                <th>Produkt</th>
-                <th>#</th>
-                <th>Δ#</th>
-                <th>+</th>
-                <th>−</th>
+                <th class="name">Produkt</th>
+                <th class="amount">#</th>
+                <th class="change">Δ#</th>
+                <th class="plus">+</th>
+                <th class="minus">−</th>
             </tr>
             {% for product in products %}
             <tr id="product{{ product.id }}"
