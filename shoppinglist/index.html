@@ -29,9 +29,11 @@ function changeAmount(field, delta) {
         {% else %}
         <table>
             <tr>
-                <th>Produkt</th>
-                <th>#</th>
-                <th>Änderung</th>
+                <th class="name">Produkt</th>
+                <th class="amount">#</th>
+                <th class="change">Δ#</th>
+                <th class="plus">+</th>
+                <th class="minus">−</th>
             </tr>
             {% for product in products %}
             <tr id="product{{ product.id }}"
@@ -41,13 +43,14 @@ function changeAmount(field, delta) {
                 >
                 <td class="name">{{ product.name }}</td>
                 <td class="amount">{{ product.desired_amount }}</td>
-                <td>
-                    <nobr>
+                <td class="change">
                     <input class="small" type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}"/>
-
+                </td>
+                <td class="plus">
                     <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" />
-                    <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="-" />
-                    </nobr>
+                </td>
+                <td class="minus">
+                    <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="−" />
                 </td>
             </tr>
             {% endfor %}
