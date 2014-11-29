@@ -11,11 +11,11 @@ body.small td {
 }
 
 .name {
-    width: 300px;
+    //width: 300px;
 }
 
 .amount {
-    width: 50px;
+    //width: 50px;
     text-align: right;
 }
 
@@ -44,10 +44,10 @@ div.form {
 }
 
 div.shelf {
+    width: 100%;
     border: 1px solid gray;
     margin-bottom: 20px;
     padding: 0px;
-    width: 500px;
 }
 
 div.shelf table {
@@ -84,4 +84,41 @@ div.shelf-title span.add-product a {
 
 .desired {
     font-weight: bold;
+}
+
+#navigation {
+    overflow: hidden;
+}
+
+#navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navigation li {
+    float: left;
+}
+
+#navigation a {
+    display: block;
+    background-color: hsl(0, 0%, 90%);
+    padding: 5px;
+    margin: 0px 1px;
+    text-decoration: none;
+}
+
+input[type=button] {
+    min-width: 10mm;
+    min-height: 10mm;
+    font-size: 7mm;
+}
+
+input.small {
+    width: 30px;
+}
+
+td.amount, td.change, td.plus, td.minus {
+    text-align: center;
+    width: 12mm;
 }
