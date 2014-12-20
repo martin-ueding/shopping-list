@@ -2,16 +2,22 @@
 
 {% block content %}
 <h1>Einkaufszettel</h1>
+<dl>
 {% for shelf_name, products in shelves_needed %}
-<h2>{{ shelf_name }}</h2>
-<table>
+<dt>{{ shelf_name }}</dt>
+<dd>
+<ul>
     {% for product in products %}
-    <tr id="product{{ product.id }}">
-        <td class="name">{{ product.name }}</td>
-        <td class="amount">{{ product.desired_amount }}</td>
-    </tr>
+    <li>
+    {{ product.name }}
+    {% if product.desired_amount > 1 %}
+    <b>× {{ product.desired_amount }}</b>
+    {% endif %}
+    </li>
     {% endfor %}
-</table>
+</ul>
+<dd>
 {% endfor %}
+</dl>
 
 {% endblock %}
