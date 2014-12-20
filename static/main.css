@@ -97,9 +97,11 @@ div.shelf-title span.add-product a {
 
 #navigation a {
     display: block;
-    background-color: hsl(0, 0%, 90%);
-    padding: 5px;
-    margin: 0px 1px;
+    background-color: hsl(0, 0%, 100%);
+    border: 1px solid hsl(0, 0%, 50%);
+    color: black;
+    padding: 7px;
+    margin: 0px 5px;
     text-decoration: none;
 }
 
@@ -120,4 +122,13 @@ input.small {
 .amount, .change, .plus, .minus {
     text-align: center;
     width: 12mm;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
