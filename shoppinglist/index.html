@@ -18,7 +18,10 @@ function changeAmount(field, delta) {
     <div class="container-fluid">
         {% csrf_token %}
         {% for shelf_name, shelf_id, products in shelves %}
-        <div class="shelf col-md-4">
+        {% if forloop.counter0|divisibleby:"3" %}
+        <div class="row">
+        {% endif %}
+        <div class="shelf col-md-4 col-sm-6">
             <div class="shelf-title">
                 <span class="shelf-title">{{ shelf_name }}</span>
                 <span class="add-product">
@@ -60,22 +63,20 @@ function changeAmount(field, delta) {
         </div>
 
         {% if forloop.counter|divisibleby:"3" %}
-        <div class="clearfix visible-md-block"></div>
+        </div>
         {% endif %}
         {% endfor %}
 
         <div class="clearfix visible-md-block"></div>
+    </div>
 
-        <div class="form col-md-12">
-            <input type="submit" value="Übernehmen" />
-        </div>
+    <div>
+        <input type="submit" value="Übernehmen" />
     </div>
 </form>
 
-<div class="form col-md-12">
     <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
         {% csrf_token %}
         Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
     </form>
-</div>
 {% endblock %}
