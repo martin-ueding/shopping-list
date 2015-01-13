@@ -24,7 +24,7 @@ def index(request):
         products.sort()
         shelves_template.append((shelf.name, shelf.id, products))
 
-    return render_to_response('shoppinglist/index.html',
+    return render_to_response('shoppinglist/templates/index.html',
                               {'shelves': shelves_template},
                               context_instance=RequestContext(request))
 
@@ -39,7 +39,7 @@ def view(request):
             products.sort()
             shelves_needed.append((shelf.name, products))
 
-    return render_to_response('shoppinglist/view.html',
+    return render_to_response('shoppinglist/templates/view.html',
                               {'shelves_needed': shelves_needed})
 
 class ProductForm(ModelForm):
@@ -62,7 +62,7 @@ def add_product(request, shelf_id):
         form = ProductForm(initial={'shelf': shelf})
 
     return render_to_response(
-        'shoppinglist/new-product.html',
+        'shoppinglist/templates/new-product.html',
         {'form': form},
         context_instance=RequestContext(request),
     )
@@ -80,7 +80,7 @@ def add_shelf(request):
             form[field].css_classes('form-control')
             print(field, form[field].css_classes())
         return render_to_response(
-            'shoppinglist/new-shelf.html',
+            'shoppinglist/templates/new-shelf.html',
             {'form': form},
             context_instance=RequestContext(request),
         )
@@ -100,7 +100,7 @@ def aftermath(request):
     if len(products) > 0:
         products.sort()
 
-    return render_to_response('shoppinglist/aftermath.html',
+    return render_to_response('shoppinglist/templates/aftermath.html',
                               {'products': products, 'resetted': resetted},
                               context_instance=RequestContext(request))
 

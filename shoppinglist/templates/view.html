@@ -1,7 +1,8 @@
-{% extends "shoppinglist/base.html" %}
+{% extends "shoppinglist/templates/base.html" %}
 
 {% block content %}
 <h1>Einkaufszettel</h1>
+{% if shelves_needed|length > 0 %}
 <dl>
 {% for shelf_name, products in shelves_needed %}
 <dt>{{ shelf_name }}</dt>
@@ -19,5 +20,12 @@
 <dd>
 {% endfor %}
 </dl>
+{% else %}
+<div class="alert alert-warning">
+    <p>
+    Der Einkaufszettel ist leer.
+    </p>
+</div>
+{% endif %}
 
 {% endblock %}
