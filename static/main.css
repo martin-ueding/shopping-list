@@ -9,3 +9,7 @@
 input.amount {
     width: 60px;
 }
+
+body {
+    font-family: Ubuntu, sans;
+}
