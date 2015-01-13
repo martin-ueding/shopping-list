@@ -8,17 +8,19 @@
     </head>
     <body>
 
-    <div id="navigation">
-        <ul class="nav nav-pills">
-            <li role="presentation"><a href="{% url 'shoppinglist.views.index' %}">Alle</a></li>
-            <li role="presentation"><a href="{% url 'shoppinglist.views.view' %}">Einkaufszettel</a></li>
-            <li role="presentation"><a href="{% url 'shoppinglist.views.aftermath' %}">abhaken</a></li>
-        </ul>
-    </div>
+    <div class="container-fluid">
+        <div id="navigation">
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="{% url 'shoppinglist.views.index' %}">Alle</a></li>
+                <li role="presentation"><a href="{% url 'shoppinglist.views.view' %}">Einkaufszettel</a></li>
+                <li role="presentation"><a href="{% url 'shoppinglist.views.aftermath' %}">abhaken</a></li>
+            </ul>
+        </div>
 
-    <div id="content">
-        {% block content %}
-        {% endblock %}
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 
     </body>
