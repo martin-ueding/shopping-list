@@ -105,12 +105,6 @@ div.shelf-title span.add-product a {
     text-decoration: none;
 }
 
-input[type=button], input[type=submit] {
-    min-width: 10mm;
-    min-height: 10mm;
-    font-size: 7mm;
-}
-
 input.small {
     width: 30px;
 }
@@ -131,4 +125,25 @@ dt {
 dd {
     margin-bottom: 20px;
     margin-left: 10px;
+}
+
+@media (min-resolution: 200dpi) {
+    input[type=button], input[type=submit] {
+        min-width: 10mm;
+        min-height: 10mm;
+        font-size: 7mm;
+    }
+}
+
+@media -moz-touch-enabled {
+}
+
+@media (min-width: 1300px) and (max-resolution: 150dpi) {
+    #content {
+        /* column-count: 2; */
+        columns: 600px;
+    }
+    div.shelf {
+        width: 500px;
+    }
 }
