@@ -47,8 +47,10 @@ function changeAmount(field, delta) {
                         <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount" />
                     </td>
                     <td class="plus-minus for-touch">
-                        <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" class="btn btn-default" />
-                        <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="−" class="btn btn-default" />
+                        <nobr>
+                            <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" class="btn btn-default" />
+                            <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="−" class="btn btn-default" />
+                        </nobr>
                     </td>
                 </tr>
                 {% endfor %}
