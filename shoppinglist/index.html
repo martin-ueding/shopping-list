@@ -45,7 +45,7 @@ function changeAmount(field, delta) {
                     {% for product in products %}
                     <tr id="product{{ product.id }}"
                         {% if product.desired_amount > 0 %}
-                        class="desired"
+                        class="active"
                         {% endif %}
                         >
                         <td class="name">{{ product.name }}</td>
