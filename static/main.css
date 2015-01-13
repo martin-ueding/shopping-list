@@ -5,3 +5,7 @@
         display: none;
     }
 }
+
+input.amount {
+    width: 60px;
+}
