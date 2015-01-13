@@ -1,8 +1,7 @@
 /* Copyright © 2015 Martin Ueding <dev@martin-ueding.de> */
 
-body {
-    padding: 30px;
-}
-
-@media -moz-touch-enabled {
+@media not -moz-touch-enabled {
+    .for-touch {
+        display: none;
+    }
 }
