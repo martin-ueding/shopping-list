@@ -89,7 +89,8 @@ return (this.bottom = $('#bottom').outerHeight(true))
             </div>
         </form>
     </div>
-    <div id="myAffix" class="col-md-2">
+    <div class="col-md-2 hidden-print hidden-xs hidden-sm">
+        <div id="myAffix" data-spy="affix" data-offset-top="0" data-offset-bottom="0">
          <ul class="nav bs-docs-sidenav">
 
         <li>
@@ -97,6 +98,7 @@ return (this.bottom = $('#bottom').outerHeight(true))
             <a href="#shelf-{{ shelf_id }}">{{ shelf_name }}</a>
         {% endfor %}
         </li>
+        </div>
     </div>
 </div>
 
