@@ -57,24 +57,30 @@ function changeAmount(field, delta) {
         {% endif %}
 
         <span class="add-product">
-            <a href="{% url 'shoppinglist.views.add_product' shelf_id %}" role="button" class="btn btn-default button-sm">Produkt zu {{ shelf_name }} hinzufügen</a>
+            <a href="{% url 'shoppinglist.views.add_product' shelf_id %}" role="button" class="btn btn-default button-sm">Produkt zu <em>{{ shelf_name }}</em> hinzufügen</a>
         </span>
     </div>
 
-    {% if forloop.counter|divisibleby:"3" %}
+    {% if forloop.counter|divisibleby:"3" or forloop.last %}
     </div>
     {% endif %}
     {% endfor %}
 
-    <div class="clearfix visible-md-block"></div>
-
-    <div>
-        <input type="submit" value="Übernehmen" />
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-success" value="Übernehmen" />
+        </div>
     </div>
 </form>
 
-<form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
-    {% csrf_token %}
-    Neues Regal: <input type="text" name="name" /> <input type="submit" value="erstellen" />
-</form>
+<div class="row">
+    <div class="col-md-12 well">
+        <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
+            {% csrf_token %}
+            Neues Regal:
+            <input type="text" name="name" />
+            <input type="submit" class="btn btn-warning" value="erstellen" />
+        </form>
+    </div>
+</div>
 {% endblock %}
