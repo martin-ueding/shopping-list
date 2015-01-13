@@ -3,22 +3,24 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Einkaufsliste{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="/static/main.css" />
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
 
-    <div id="navigation">
-        <ul>
-            <li><a href="{% url shoppinglist.views.index %}">Alle</a></li>
-            <li><a href="{% url shoppinglist.views.view %}">Einkaufszettel</a></li>
-            <li><a href="{% url shoppinglist.views.aftermath %}">abhaken</a></li>
-        </ul>
-    </div>
+    <div class="container-fluid">
+        <div id="navigation">
+            <ul class="nav nav-pills">
+                <li role="presentation"><a href="{% url shoppinglist.views.index %}">Alle</a></li>
+                <li role="presentation"><a href="{% url shoppinglist.views.view %}">Einkaufszettel</a></li>
+                <li role="presentation"><a href="{% url shoppinglist.views.aftermath %}">abhaken</a></li>
+            </ul>
+        </div>
 
-    <div id="content">
-        {% block content %}
-        {% endblock %}
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
     </div>
 
     </body>
