@@ -11,68 +11,95 @@ function changeAmount(field, delta) {
     value += delta;
     document.getElementById(field).value = value;
 }
+
+/*
+$('#myAffix').affix({
+offset: {
+top: 100,
+bottom: function () {
+return (this.bottom = $('#bottom').outerHeight(true))
+}
+}
+})
+*/
 </script>
 
 <h1>Alle Produkte</h1>
-<form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
-    {% csrf_token %}
-    {% for shelf_name, shelf_id, products in shelves %}
-    {% if forloop.counter0|divisibleby:"3" %}
-    <div class="row">
-    {% endif %}
-    <div class="shelf col-md-4 col-sm-6">
-        <h3>{{ shelf_name }}</h3>
-        {% if products|length == 0 %}
-        <p><em>(keine Produkte)</em></p>
-        {% else %}
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th class="name">Produkt</th>
-                    <th class="amount">#</th>
-                    <th class="change">Δ#</th>
-                    <th class="plus for-touch">+ / −</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for product in products %}
-                <tr id="product{{ product.id }}"
-                    {% if product.desired_amount > 0 %}
-                    class="info"
+
+<div class="row">
+    <div class="col-md-10">
+        <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
+            {% csrf_token %}
+            {% for shelf_name, shelf_id, products in shelves %}
+            {% if forloop.counter0|divisibleby:"3" %}
+            <div class="row">
+                {% endif %}
+                <div class="shelf col-md-4 col-sm-6" id="shelf-{{ shelf_id }}">
+                    <h3>{{ shelf_name }}</h3>
+                    {% if products|length == 0 %}
+                    <p><em>(keine Produkte)</em></p>
+                    {% else %}
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th class="name">Produkt</th>
+                                <th class="amount">#</th>
+                                <th class="change">Δ#</th>
+                                <th class="plus for-touch">+ / −</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+                        <tr id="product{{ product.id }}"
+                            {% if product.desired_amount > 0 %}
+                            class="info"
+                            {% endif %}
+                            >
+                            <td class="name">{{ product.name }}</td>
+                            <td class="amount">{{ product.desired_amount }}</td>
+                            <td class="change">
+                                <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount" />
+                            </td>
+                            <td class="plus-minus for-touch">
+                                <nobr>
+                                <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" class="btn btn-default" />
+                                <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="−" class="btn btn-default" />
+                                </nobr>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
                     {% endif %}
-                    >
-                    <td class="name">{{ product.name }}</td>
-                    <td class="amount">{{ product.desired_amount }}</td>
-                    <td class="change">
-                        <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount" />
-                    </td>
-                    <td class="plus-minus for-touch">
-                        <nobr>
-                            <input type="button" onclick="changeAmount('id-{{ product.id }}', 1)" value="+" class="btn btn-default" />
-                            <input type="button" onclick="changeAmount('id-{{ product.id }}', -1)" value="−" class="btn btn-default" />
-                        </nobr>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% endif %}
 
-        <span class="add-product">
-            <a href="{% url 'shoppinglist.views.add_product' shelf_id %}" role="button" class="btn btn-default button-sm">Produkt zu <em>{{ shelf_name }}</em> hinzufügen</a>
-        </span>
-    </div>
+                    <span class="add-product">
+                        <a href="{% url 'shoppinglist.views.add_product' shelf_id %}" role="button" class="btn btn-default button-sm">Produkt zu <em>{{ shelf_name }}</em> hinzufügen</a>
+                    </span>
+                </div>
 
-    {% if forloop.counter|divisibleby:"3" or forloop.last %}
-    </div>
-    {% endif %}
-    {% endfor %}
+                {% if forloop.counter|divisibleby:"3" or forloop.last %}
+            </div>
+            {% endif %}
+            {% endfor %}
 
-    <div class="row">
-        <div class="col-md-12">
-            <input type="submit" class="btn btn-success" value="Übernehmen" />
-        </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-success" value="Übernehmen" />
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+    <div id="myAffix" class="col-md-2">
+         <ul class="nav bs-docs-sidenav">
+
+        <li>
+            {% for shelf_name, shelf_id, products in shelves %}
+            <a href="#shelf-{{ shelf_id }}">{{ shelf_name }}</a>
+        {% endfor %}
+        </li>
+    </div>
+</div>
+
+<div id="bottom"></div>
 
 {% endblock %}
