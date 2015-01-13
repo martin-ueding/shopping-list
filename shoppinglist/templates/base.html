@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Einkaufsliste{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/static/main.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+    <div class="container-fluid">
+        <div id="navigation">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Einkaufszettel
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
+                            <a href="{% url shoppinglist.views.index %}">… befüllen</a>
+                            <a href="{% url shoppinglist.views.view %}">… anzeigen</a>
+                            <a href="{% url shoppinglist.views.aftermath %}">… abhaken</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Regale
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
+                            <a href="{% url shoppinglist.views.add_shelf %}">neues Regal erstellen</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    </body>
+</html>

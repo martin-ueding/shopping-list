@@ -1,8 +1,15 @@
 /* Copyright © 2015 Martin Ueding <dev@martin-ueding.de> */
 
-body {
-    padding: 30px;
+@media not -moz-touch-enabled {
+    .for-touch {
+        display: none;
+    }
 }
 
-@media -moz-touch-enabled {
+input.amount {
+    width: 60px;
+}
+
+body {
+    font-family: Ubuntu, sans;
 }

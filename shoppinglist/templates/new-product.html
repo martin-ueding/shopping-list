@@ -1,10 +1,10 @@
-{% extends "shoppinglist/base.html" %}
+{% extends "shoppinglist/templates/base.html" %}
 
 {% block content %}
 <h1>Neues Produkt</h1>
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="hinzufügen" />
+    <input type="submit" class="btn btn-primary" value="hinzufügen" />
 </form>
 {% endblock %}

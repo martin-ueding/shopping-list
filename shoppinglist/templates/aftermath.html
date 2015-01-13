@@ -1,4 +1,4 @@
-{% extends "shoppinglist/base.html" %}
+{% extends "shoppinglist/templates/base.html" %}
 
 {% block content %}
 <h1>Einkaufszettel</h1>
@@ -23,10 +23,14 @@
             {% endfor %}
         </tbody>
     </table>
-    <input type="submit" value="als erledigt markieren" />
+    <input type="submit" class="btn btn-primary" value="als erledigt markieren" />
 </form>
 {% else %}
-<p>Es sind keine Produkte ausgewählt. Es können also auch keine Produkte
-abgehakt werden.</p>
+<div class="alert alert-warning">
+    <p>
+    Es sind keine Produkte ausgewählt. Es können also auch keine Produkte
+    abgehakt werden.
+    </p>
+</div>
 {% endif %}
 {% endblock %}
