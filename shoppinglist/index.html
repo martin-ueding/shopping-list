@@ -73,14 +73,4 @@ function changeAmount(field, delta) {
     </div>
 </form>
 
-<div class="row">
-    <div class="col-md-12 well">
-        <form action="{% url 'shoppinglist.views.add_shelf' %}" method="post">
-            {% csrf_token %}
-            Neues Regal:
-            <input type="text" name="name" />
-            <input type="submit" class="btn btn-warning" value="erstellen" />
-        </form>
-    </div>
-</div>
 {% endblock %}
