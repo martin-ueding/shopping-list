@@ -1,6 +1,6 @@
 /* Copyright © 2015 Martin Ueding <dev@martin-ueding.de> */
 
-@media not -moz-touch-enabled {
+@media (-moz-touch-enabled: 0) {
     .for-touch {
         display: none;
     }
