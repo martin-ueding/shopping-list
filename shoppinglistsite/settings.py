@@ -60,8 +60,12 @@ WSGI_APPLICATION = 'shoppinglistsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-with open('/etc/shopping-list/databases.js') as f:
-    DATABASES = json.load(f)
+DATABASES = []
+
+database_credentials_file = '/etc/shopping-list/databases.js'
+if os.path.isfile(database_credentials_file):
+    with open(database_credentials_file) as f:
+        DATABASES = json.load(f)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
