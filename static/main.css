@@ -13,3 +13,12 @@ input.amount {
 body {
     font-family: Ubuntu, sans;
 }
+
+
+#submit-row {
+    margin-top: 30px;
+}
+
+div.shelf {
+    padding-bottom: 15px;
+}
