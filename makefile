@@ -9,7 +9,6 @@ install:
 	mkdir -p $(DESTDIR)/etc/apache2/conf.d/
 	cp wsgi $(DESTDIR)/etc/apache2/conf.d/shopping-list
 
-
 .PHONY: clean
 clean:
 	$(RM) *.class *.jar
