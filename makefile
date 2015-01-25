@@ -8,6 +8,8 @@ install:
 	cp -r static $(DESTDIR)/usr/share/shopping-list/
 	mkdir -p $(DESTDIR)/etc/apache2/conf.d/
 	cp wsgi $(DESTDIR)/etc/apache2/conf.d/shopping-list
+	mkdir -p $(DESTDIR)/etc/shopping-list/
+	cp databases.js $(DESTDIR)/etc/shopping-list/databases.js.example
 
 .PHONY: clean
 clean:
