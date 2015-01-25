@@ -21,11 +21,11 @@ import json
 SECRET_KEY = '%&xv(1hb&jl52d=_=fzw45&uh_3@xf$&oj7f#+yt28t-vjuqs&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 TEMPLATE_DIRS = [BASE_DIR]
 
