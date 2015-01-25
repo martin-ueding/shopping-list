@@ -74,6 +74,7 @@ user all priviliges on the ``django`` database:
     CREATE USER 'django'@'localhost' IDENTIFIED BY 'password';
     GRANT ALL PRIVILEGES ON django . * TO 'django'@'localhost';
     FLUSH PRIVILEGES;
+    exit
 
 Then restart Apache httpd with::
 
