@@ -35,6 +35,8 @@ Add repository
         aptitude update
         aptitude install shopping-list
 
+    You will have to confirm that you want to install this untrusted package.
+
 Database installation
 ~~~~~~~~~~~~~~~~~~~~~
 
