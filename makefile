@@ -4,8 +4,8 @@ all:
 
 install:
 	python setup.py install --root $(DESTDIR) --install-layout deb
-	mkdir -p $(DESTDIR)/var/www/
-	cp -r static $(DESTDIR)/var/www/
+	mkdir -p $(DESTDIR)/usr/share/shopping-list/
+	cp -r static $(DESTDIR)/usr/share/shopping-list/
 	mkdir -p $(DESTDIR)/etc/apache2/conf.d/
 	cp wsgi $(DESTDIR)/etc/apache2/conf.d/shopping-list
 
