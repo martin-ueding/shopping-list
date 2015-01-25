@@ -16,7 +16,12 @@ Installation of package
 There is a Debian 7 package here:
 
 One-off installation
-    You can just download the latest package and install it using::
+    First, install the dependencies::
+
+        aptitude install python-django apache2 libapache2-mod-wsgi python-mysqldb mysql-server mysql-client
+
+    You can just download the `latest package
+    <http://debian.martin-ueding.de/binary/>`_ and install it using::
 
         dpkg -i shopping-list_1.0.6-django1.4-2_all.deb
 
