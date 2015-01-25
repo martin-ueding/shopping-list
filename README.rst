@@ -76,6 +76,37 @@ user all priviliges on the ``django`` database:
     FLUSH PRIVILEGES;
     exit
 
+Now you have to let Django fill up the database. Run
+
+.. code-block:: console
+
+    # manage-shopping-list syncdb
+    Creating tables ...
+    Creating table django_admin_log
+    Creating table auth_permission
+    Creating table auth_group_permissions
+    Creating table auth_group
+    Creating table auth_user_user_permissions
+    Creating table auth_user_groups
+    Creating table auth_user
+    Creating table django_content_type
+    Creating table django_session
+    Creating table shoppinglist_shelf
+    Creating table shoppinglist_product
+
+    You just installed Django's auth system, which means you don't have any superusers defined.
+    Would you like to create one now? (yes/no): yes
+    Username (leave blank to use 'root'):
+    E-mail address:
+    Error: That e-mail address is invalid.
+    E-mail address:
+    Password:
+    Password (again):
+    Superuser created successfully.
+    Installing custom SQL ...
+    Installing indexes ...
+    Installed 0 object(s) from 0 fixture(s)
+
 Then restart Apache httpd with::
 
     service apache2 restart
