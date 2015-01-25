@@ -9,7 +9,7 @@ WSGIPythonPath /usr/share/pyshared/
     </Files>
 </Directory>
 
-Alias /static/ /usr/share/shopping-list/static/
+Alias /shoppinglist/static/ /usr/share/shopping-list/static/
 
 <Directory /usr/share/shopping-list/static/>
     Order deny,allow
