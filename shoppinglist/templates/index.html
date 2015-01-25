@@ -15,6 +15,7 @@ function changeAmount(field, delta) {
 
 <h1 id="alle-produkte">Alle Produkte</h1>
 
+{% if shelves|length > 0 %}
 <div class="row">
     <div class="col-md-10">
         <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
@@ -95,5 +96,10 @@ function changeAmount(field, delta) {
 </div>
 
 <div id="bottom"></div>
+{% else %}
+<div class="alert alert-warning">
+    Es sind keine Regale vorhanden. Zuerst muss ein Regal angelegt werden.
+</div>
+{% endif %}
 
 {% endblock %}
