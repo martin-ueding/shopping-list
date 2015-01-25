@@ -30,6 +30,11 @@ Add repository
 
         deb http://debian.martin-ueding.de/ /
 
+    Then you can install it with::
+
+        aptitude update
+        aptitude install shopping-list
+
 Database installation
 ~~~~~~~~~~~~~~~~~~~~~
 
