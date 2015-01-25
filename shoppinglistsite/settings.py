@@ -17,6 +17,7 @@ import json
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
+# TODO Change this on deployment
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '%&xv(1hb&jl52d=_=fzw45&uh_3@xf$&oj7f#+yt28t-vjuqs&'
 
