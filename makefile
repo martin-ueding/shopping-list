@@ -10,6 +10,8 @@ install:
 	cp wsgi $(DESTDIR)/etc/apache2/conf.d/shopping-list
 	mkdir -p $(DESTDIR)/etc/shopping-list/
 	cp databases.js $(DESTDIR)/etc/shopping-list/databases.js.example
+	mkdir -p $(DESTDIR)/usr/bin
+	install manage.py $(DESTDIR)/usr/bin/manage-shopping-list
 
 .PHONY: clean
 clean:
