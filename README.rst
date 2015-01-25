@@ -10,6 +10,9 @@ Installation
 Installation on Debian 7
 ------------------------
 
+Installation of package
+~~~~~~~~~~~~~~~~~~~~~~~
+
 There is a Debian 7 package here:
 
 One-off installation
@@ -31,26 +34,7 @@ Database installation
 ~~~~~~~~~~~~~~~~~~~~~
 
 On any system, you will need a database set up for this project. I have used
-MySQL so far.
-
-In ``/etc/shopping-list/`` there is the file ``databases.js.sample`` which
-contains the databases snippet for the Django configuration. You can use the
-database you want. For MySQL, you need to set up a new user (although you can
-also just use ``root`` if you are lazy) and a database for the program. Then
-enter all this into a copy of the file at ``databases.js`` in the same folder.
-The program will look for it there.
-
-.. code-block:: javascript
-
-    {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "django",
-            "USER": "django",
-            "PASSWORD": "PASSWORD",
-            "HOST": "localhost"
-        }
-    }
+MySQL so far and will describe how this works in detail.
 
 To set up a new MySQL user and database, do the following. Start the MySQL
 client:
@@ -76,7 +60,35 @@ user all priviliges on the ``django`` database:
     FLUSH PRIVILEGES;
     exit
 
-Now you have to let Django fill up the database. Run
+In ``/etc/shopping-list/`` there is the file ``databases.js.sample`` which
+contains the databases snippet for the Django configuration. Create a copy a
+copy of the file at ``databases.js`` in the same folder. The program will look
+for it there. The copy has to be done that APT will not overwrite your changed
+configuration when a new version comes out.
+
+The file looks likes this:
+
+.. code-block:: javascript
+
+    {
+        "default": {
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "django",
+            "USER": "django",
+            "PASSWORD": "PASSWORD",
+            "HOST": "localhost"
+        }
+    }
+
+Insert the database name (``NAME``), the user (``USER``) and the password
+(``PASSWORD``) you have just configured. The host can be left to be localhost.
+
+Fill database, admin interface
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now you have to let Django fill up the database. Run ``manage-shopping-list
+syncdb`` to fill the database. It will also let you set up a password for the
+admin interface. It looks like this:
 
 .. code-block:: console
 
@@ -113,8 +125,8 @@ Then restart Apache httpd with::
 
 You should be able to access the thing now at::
 
-    http://hostname/shoppinglist/
+    http://HOSTNAME/shoppinglist/
 
 There is an admin interface at::
 
-    http://hostname/shoppinglist/admin/
+    http://HOSTNAME/shoppinglist/admin/
