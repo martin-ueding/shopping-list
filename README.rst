@@ -30,6 +30,15 @@ Add repository
 
         deb http://debian.martin-ueding.de/ /
 
+    Then you can install it with::
+
+        aptitude update
+        aptitude install shopping-list
+
+    You will have to confirm that you want to install this untrusted package.
+    If ``mysql-server`` was installed before, you will be asked to set a root
+    password for MySQL. Write that down!
+
 Database installation
 ~~~~~~~~~~~~~~~~~~~~~
 

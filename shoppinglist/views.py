@@ -75,7 +75,7 @@ def add_shelf(request):
             shelf.save()
         return HttpResponseRedirect(reverse('shoppinglist.views.index'))
     else:
-        form = ProductForm()
+        form = ShelfForm()
         for field in form.fields:
             form[field].css_classes('form-control')
             print(field, form[field].css_classes())
