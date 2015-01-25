@@ -64,7 +64,7 @@ Then create a new database called ``django`` (or something else):
 
 .. code-block:: sql
 
-    CREATE DATABASE django;`
+    CREATE DATABASE django;
 
 Then create a new user called ``django`` (or something else) and grant that new
 user all priviliges on the ``django`` database:
