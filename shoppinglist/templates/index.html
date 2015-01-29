@@ -10,13 +10,29 @@ function changeAmount(field, delta) {
     value = isNaN(value) ? 0 : value;
     value += delta;
     document.getElementById(field).value = value;
+    mark_change();
 }
+
+function mark_change() {
+    console.log('Marking the change');
+    $('#outer-container').animate({'border-left-width': '5px', 'border-right-width': '5px'}, 500);
+    $('#unchanged-warning').slideDown(500);
+}
+
+$(function () {
+        $('.input-amount').on('input propertychange paste', mark_change);
+});
 </script>
 
 <h1 id="alle-produkte">Alle Produkte</h1>
 
 {% if shelves|length > 0 %}
 <div class="row">
+    <div class="col-md-12" id="unchanged-warning">
+        <div class="alert alert-warning">
+            <p>Es gibt ungespeicherte Änderungen.</p>
+        </div>
+    </div>
     <div class="col-md-10">
         <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
             {% csrf_token %}
@@ -48,7 +64,7 @@ function changeAmount(field, delta) {
                             <td class="name">{{ product.name }}</td>
                             <td class="amount">{{ product.desired_amount }}</td>
                             <td class="change">
-                                <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount" />
+                                <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount input-amount" />
                             </td>
                             <td class="plus-minus for-touch">
                                 <div class="btn-group" role="group">

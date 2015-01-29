@@ -21,3 +21,17 @@ body {
 div.shelf {
     padding-bottom: 15px;
 }
+
+#outer-container {
+    border-left-color: orange;
+    border-left-style: solid;
+    border-left-width: 0px;
+
+    border-right-color: orange;
+    border-right-style: solid;
+    border-right-width: 0px;
+}
+
+#unchanged-warning {
+    display: none;
+}
