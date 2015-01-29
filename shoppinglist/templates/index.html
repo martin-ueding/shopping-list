@@ -17,22 +17,38 @@ function mark_change() {
     console.log('Marking the change');
     $('#outer-container').animate({'border-left-width': '5px', 'border-right-width': '5px'}, 500);
     $('#unchanged-warning').slideDown(500);
+    has_changed = true;
+}
+
+has_changed = false;
+
+function confirm_before_link() {
+    if (!has_changed) {
+        return true;
+    }
+
+    return confirm('Wenn Sie weitergehen, werden Änderungen verloren gehen. Bitte übernehmen Sie vorher die Änderungen.');
 }
 
 $(function () {
         $('.input-amount').on('input propertychange paste', mark_change);
+        $('a').filter(function (index) {return !$(this).attr('href').startsWith('#')}).on('click', confirm_before_link);
 });
 </script>
 
-<h1 id="alle-produkte">Alle Produkte</h1>
-
-{% if shelves|length > 0 %}
 <div class="row">
-    <div class="col-md-12" id="unchanged-warning">
-        <div class="alert alert-warning">
+        <div class="col-lg-6">
+        <h1 id="alle-produkte">Alle Produkte</h1>
+    </div>
+    <div class="col-lg-6">
+        <div class="alert alert-warning" id="unchanged-warning">
             <p>Es gibt ungespeicherte Änderungen.</p>
         </div>
     </div>
+</div>
+
+{% if shelves|length > 0 %}
+<div class="row">
     <div class="col-md-10">
         <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
             {% csrf_token %}
