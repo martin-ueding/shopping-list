@@ -61,7 +61,12 @@ WSGI_APPLICATION = 'shoppinglistsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
-DATABASES = []
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 database_credentials_file = '/etc/shopping-list/databases.js'
 if os.path.isfile(database_credentials_file):
