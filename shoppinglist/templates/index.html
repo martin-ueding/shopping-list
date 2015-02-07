@@ -30,8 +30,8 @@ function confirm_before_link() {
 }
 
 $(function () {
-        $('.input-amount').on('input propertychange paste', mark_change);
-        $('a').filter(function (index) {return !$(this).attr('href').startsWith('#')}).on('click', confirm_before_link);
+    $('.input-amount').on('input propertychange paste', mark_change);
+    $('a').filter(function (index) {return !$(this).attr('href').startsWith('#')}).on('click', confirm_before_link);
 });
 </script>
 
