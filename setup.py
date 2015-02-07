@@ -22,7 +22,7 @@ setup(
     ],
     url="https://github.com/martin-ueding/shoppinglist",
     download_url="http://bulk.martin-ueding.de/source/shopping-list/",
-    version="1.0.2",
+    version="1.1.0",
     include_package_data = True,
     package_data = {
         '': ['*.html'],
