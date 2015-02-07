@@ -32,10 +32,6 @@ div.shelf {
     border-right-width: 0px;
 }
 
-#unchanged-warning {
-    display: none;
-}
-
 #plus-minus {
     width: 67px;
 }
