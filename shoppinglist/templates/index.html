@@ -80,10 +80,10 @@ $(function () {
                                 <input type="number" min="-{{ product.desired_amount }}" value="0" name="id-{{ product.id }}" id="id-{{ product.id }}" class="amount input-amount" />
                             </td>
                             <td class="plus-minus for-touch">
-                                <div class="btn-group" role="group" id="plus-minus">
+                                <nobr>
                                     <button type="button" onclick="changeAmount('id-{{ product.id }}', 1)" class="btn btn-default">+</button>
                                     <button type="button" onclick="changeAmount('id-{{ product.id }}', -1)" class="btn btn-default">−</button>
-                                </div>
+                                </nobr>
                             </td>
                         </tr>
                         {% endfor %}
