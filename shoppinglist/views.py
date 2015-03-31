@@ -69,21 +69,21 @@ def add_product(request, shelf_id):
 
 def add_shelf(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        if len(name) > 0:
-            shelf = Shelf(name=name, rank=-1)
-            shelf.save()
-        return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+        form = ShelfForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
     else:
         form = ShelfForm()
         for field in form.fields:
             form[field].css_classes('form-control')
             print(field, form[field].css_classes())
-        return render_to_response(
-            'shoppinglist/templates/new-shelf.html',
-            {'form': form},
-            context_instance=RequestContext(request),
-        )
+
+    return render_to_response(
+        'shoppinglist/templates/new-shelf.html',
+        {'form': form},
+        context_instance=RequestContext(request),
+    )
 
 def aftermath(request):
     resetted = []
