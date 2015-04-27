@@ -37,7 +37,10 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
-                            <a href="{% url 'shoppinglist.views_product.add' %}">neues Produkt erstellen</a>
+                            <a href="{% url 'shoppinglist.views_product.index' %}">Übersicht</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'shoppinglist.views_product.add' %}">… erstellen</a>
                         </li>
                     </ul>
                 </li>
@@ -49,7 +52,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li>
-                            <a href="{% url 'shoppinglist.views.add_shelf' %}">neues Regal erstellen</a>
+                            <a href="{% url 'shoppinglist.views.add_shelf' %}">… erstellen</a>
                         </li>
                     </ul>
                 </li>
