@@ -92,7 +92,7 @@ $(function () {
                     {% endif %}
 
                     <span class="add-product">
-                        <a href="{% url 'shoppinglist.views.add_product' shelf_id %}" role="button" class="btn btn-default btn-sm">Produkt zu <em>{{ shelf_name }}</em> hinzufügen</a>
+                        <a href="{% url 'shoppinglist.views_product.add' shelf_id %}" role="button" class="btn btn-default btn-sm">Produkt zu <em>{{ shelf_name }}</em> hinzufügen</a>
                         <a href="#alle-produkte" role="button" class="btn btn-default btn-sm">nach oben</a>
                     </span>
 
