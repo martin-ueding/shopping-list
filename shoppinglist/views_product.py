@@ -59,7 +59,7 @@ def order_more(request, product_id_str):
     product_id = int(product_id_str)
     product = Product.objects.filter(id=product_id)[0]
     return render_to_response(
-        'shoppinglist/templates/order-more.html',
+        'shoppinglist/templates/product/order-more.html',
         {'product_id': product_id,
          'name': product.name,
          'desired': product.desired_amount,
