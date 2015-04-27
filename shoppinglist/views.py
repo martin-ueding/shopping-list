@@ -42,30 +42,10 @@ def view(request):
     return render_to_response('shoppinglist/templates/view.html',
                               {'shelves_needed': shelves_needed})
 
-class ProductForm(ModelForm):
-    class Meta:
-        model = Product
-
 class ShelfForm(ModelForm):
     class Meta:
         model = Shelf
 
-def add_product(request, shelf_id):
-    shelf = Shelf.objects.filter(id=shelf_id)[0]
-
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
-    else:
-        form = ProductForm(initial={'shelf': shelf})
-
-    return render_to_response(
-        'shoppinglist/templates/new-product.html',
-        {'form': form},
-        context_instance=RequestContext(request),
-    )
 
 def add_shelf(request):
     if request.method == 'POST':
