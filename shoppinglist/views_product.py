@@ -49,7 +49,7 @@ def add(request, shelf_id=None):
         form = ProductForm(initial={'shelf': shelf})
 
     return render_to_response(
-        'shoppinglist/templates/new-product.html',
+        'shoppinglist/templates/product/new.html',
         {'form': form},
         context_instance=RequestContext(request),
     )
