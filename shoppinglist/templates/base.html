@@ -32,6 +32,18 @@
 
                 <li role="presentation" class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Produkte
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                        <li>
+                            <a href="{% url 'shoppinglist.views_product.add' %}">neues Produkt erstellen</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                         Regale
                         <span class="caret"></span>
                     </a>

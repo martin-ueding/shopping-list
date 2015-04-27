@@ -20,8 +20,10 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
 
-def add(request, shelf_id):
-    shelf = Shelf.objects.filter(id=shelf_id)[0]
+def add(request, shelf_id=None):
+    shelf = None
+    if shelf_id is not None:
+        shelf = Shelf.objects.filter(id=shelf_id)[0]
 
     if request.method == 'POST':
         form = ProductForm(request.POST)
