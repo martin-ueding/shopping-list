@@ -20,6 +20,21 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
 
+def edit(request, product_id_str):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+    else:
+        form = ProductForm(instance=Product.objects.filter(id=int(product_id_str))[0])
+
+    return render_to_response(
+        'shoppinglist/templates/product/edit.html',
+        {'form': form},
+        context_instance=RequestContext(request),
+    )
+
 def add(request, shelf_id=None):
     shelf = None
     if shelf_id is not None:

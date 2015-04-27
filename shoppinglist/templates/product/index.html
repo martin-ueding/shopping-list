@@ -23,6 +23,7 @@
         <td>{{ product.shelf.name }}</td>
         <td class="amount">{{ product.desired_amount }}</td>
         <td>
+            <a href="{% url 'shoppinglist.views_product.edit' product.id %}" class="btn btn-default btn-xs">bearbeiten</a>
             <a href="{% url 'shoppinglist.views_product.order_more' product.id %}" class="btn btn-default btn-xs">mehr bestellen</a>
         </td>
     </tr>
