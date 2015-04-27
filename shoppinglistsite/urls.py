@@ -15,4 +15,6 @@ urlpatterns = patterns('',
                        url(r'^$', 'shoppinglist.views.index'),
                        url(r'product/add/(?P<shelf_id>\d+)$', 'shoppinglist.views.add_product'),
                        url(r'shelf/add$', 'shoppinglist.views.add_shelf'),
+                       url(r'product/order-more/(?P<product_id_str>\d+)$', 'shoppinglist.views.order_more'),
+                       url(r'product/order-more/(?P<product_id_str>\d+)/(?P<delta>\d+)$', 'shoppinglist.views.increment'),
                       )
