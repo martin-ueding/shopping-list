@@ -24,7 +24,7 @@ def index(request):
         products.sort()
         shelves_template.append((shelf.name, shelf.id, products))
 
-    return render_to_response('shoppinglist/templates/index.html',
+    return render_to_response('shoppinglist/templates/list/edit.html',
                               {'shelves': shelves_template},
                               context_instance=RequestContext(request))
 
@@ -39,51 +39,31 @@ def view(request):
             products.sort()
             shelves_needed.append((shelf.name, products))
 
-    return render_to_response('shoppinglist/templates/view.html',
+    return render_to_response('shoppinglist/templates/list/view.html',
                               {'shelves_needed': shelves_needed})
-
-class ProductForm(ModelForm):
-    class Meta:
-        model = Product
 
 class ShelfForm(ModelForm):
     class Meta:
         model = Shelf
 
-def add_product(request, shelf_id):
-    shelf = Shelf.objects.filter(id=shelf_id)[0]
-
-    if request.method == 'POST':
-        form = ProductForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
-    else:
-        form = ProductForm(initial={'shelf': shelf})
-
-    return render_to_response(
-        'shoppinglist/templates/new-product.html',
-        {'form': form},
-        context_instance=RequestContext(request),
-    )
 
 def add_shelf(request):
     if request.method == 'POST':
-        name = request.POST['name']
-        if len(name) > 0:
-            shelf = Shelf(name=name, rank=-1)
-            shelf.save()
-        return HttpResponseRedirect(reverse('shoppinglist.views.index'))
+        form = ShelfForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('shoppinglist.views.index'))
     else:
         form = ShelfForm()
         for field in form.fields:
             form[field].css_classes('form-control')
             print(field, form[field].css_classes())
-        return render_to_response(
-            'shoppinglist/templates/new-shelf.html',
-            {'form': form},
-            context_instance=RequestContext(request),
-        )
+
+    return render_to_response(
+        'shoppinglist/templates/shelf/new.html',
+        {'form': form},
+        context_instance=RequestContext(request),
+    )
 
 def aftermath(request):
     resetted = []
@@ -100,7 +80,7 @@ def aftermath(request):
     if len(products) > 0:
         products.sort()
 
-    return render_to_response('shoppinglist/templates/aftermath.html',
+    return render_to_response('shoppinglist/templates/list/aftermath.html',
                               {'products': products, 'resetted': resetted},
                               context_instance=RequestContext(request))
 

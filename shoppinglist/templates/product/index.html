@@ -1,0 +1,34 @@
+{% extends "shoppinglist/templates/base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+<h1>Produkte</h1>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Produkt</th>
+            <th>Regal</th>
+            <th>#</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for product in products %}
+    <tr id="product{{ product.id }}">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.shelf.name }}</td>
+        <td class="amount">{{ product.desired_amount }}</td>
+        <td>
+            <a href="{% url 'shoppinglist.views_product.edit' product.id %}" class="btn btn-default btn-xs">bearbeiten</a>
+            <a href="{% url 'shoppinglist.views_product.order_more' product.id %}" class="btn btn-default btn-xs">mehr bestellen</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
