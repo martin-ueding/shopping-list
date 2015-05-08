@@ -49,10 +49,8 @@ $(function () {
     <div class="col-md-10">
         <form action="{% url 'shoppinglist.views.update_numbers' %}" method="post" class="form-inline">
             {% csrf_token %}
-            {% for shelf_name, shelf_id, products in shelves %}
-            {% if forloop.counter0|divisibleby:"3" %}
-            <div class="row padding-bottom">
-                {% endif %}
+            <div style="display: flex; flex-flow: row wrap;">
+                {% for shelf_name, shelf_id, products in shelves %}
                 <div class="col-md-4 col-sm-6" id="shelf-{{ shelf_id }}">
                     <h3>{{ shelf_name }}</h3>
                     {% if products|length == 0 %}
@@ -100,11 +98,8 @@ $(function () {
                         <input type="submit" class="change-submit btn btn-default btn-sm" value="Übernehmen" />
                     </div>
                 </div>
-
-                {% if forloop.counter|divisibleby:"3" or forloop.last %}
+                {% endfor %}
             </div>
-            {% endif %}
-            {% endfor %}
 
             <div class="row" id="submit-row">
                 <div class="col-md-12">
