@@ -19,7 +19,7 @@
             <tr id="product{{ product.id }}">
                 <td class="name">{{ product.name }}</td>
                 <td class="amount">{{ product.desired_amount }}</td>
-                <td><input type="checkbox" name="product_ids" value="{{ product.id }}" checked="checked" /></td>
+                <td><input type="checkbox" name="product_ids" value="{{ product.id }}" /></td>
             </tr>
             {% endfor %}
         </tbody>
