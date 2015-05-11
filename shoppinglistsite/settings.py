@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import os.path
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 import json
@@ -22,7 +23,7 @@ import json
 SECRET_KEY = '%&xv(1hb&jl52d=_=fzw45&uh_3@xf$&oj7f#+yt28t-vjuqs&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not os.path.isfile('/etc/shopping-list/nodebug')
 
 TEMPLATE_DEBUG = True
 
