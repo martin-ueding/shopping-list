@@ -5,16 +5,18 @@
 
 import re
 
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.forms import ModelForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.forms import ModelForm
 
 from shoppinglist.models import Product, Shelf
 
 ID_PATTERN = re.compile(r'id-(\d+)')
 
+@login_required
 def index(request):
     shelves = Shelf.objects.all()
     shelves_template = []
@@ -28,6 +30,7 @@ def index(request):
                               {'shelves': shelves_template},
                               context_instance=RequestContext(request))
 
+@login_required
 def view(request):
     shelves = Shelf.objects.all()
 
@@ -47,6 +50,7 @@ class ShelfForm(ModelForm):
         model = Shelf
 
 
+@login_required
 def add_shelf(request):
     if request.method == 'POST':
         form = ShelfForm(request.POST)
@@ -65,6 +69,7 @@ def add_shelf(request):
         context_instance=RequestContext(request),
     )
 
+@login_required
 def aftermath(request):
     resetted = []
     if 'product_ids' in request.POST:
@@ -84,6 +89,7 @@ def aftermath(request):
                               {'products': products, 'resetted': resetted},
                               context_instance=RequestContext(request))
 
+@login_required
 def update_numbers(request):
     for key in request.POST:
         match = ID_PATTERN.match(key)
