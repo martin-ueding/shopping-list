@@ -5,11 +5,12 @@
 
 import re
 
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.forms import ModelForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.forms import ModelForm
 
 from shoppinglist.models import Product, Shelf
 
@@ -28,6 +29,7 @@ def index(request):
                               {'shelves': shelves_template},
                               context_instance=RequestContext(request))
 
+@login_required
 def view(request):
     shelves = Shelf.objects.all()
 

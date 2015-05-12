@@ -94,3 +94,5 @@ USE_TZ = True
 STATIC_URL = '/shoppinglist/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATIC_ROOT = '/usr/share/shopping-list/static/'
+
+LOGIN_URL = '/login'
