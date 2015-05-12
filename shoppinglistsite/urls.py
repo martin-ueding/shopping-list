@@ -20,4 +20,5 @@ urlpatterns = patterns('',
                        url(r'product/order-more/(?P<product_id_str>\d+)$', 'shoppinglist.views_product.order_more'),
                        url(r'product/edit/(?P<product_id_str>\d+)$', 'shoppinglist.views_product.edit'),
                        url(r'product/order-more/(?P<product_id_str>\d+)/(?P<delta>\d+)$', 'shoppinglist.views_product.increment'),
+                       url(r'^login$', 'django.contrib.auth.views.login', {'template_name': 'shoppinglist/templates/login.html'}),
                       )
