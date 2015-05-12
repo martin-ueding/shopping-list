@@ -5,11 +5,12 @@
 
 import re
 
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.forms import ModelForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, render_to_response, redirect
 from django.template import RequestContext
-from django.forms import ModelForm
 
 from shoppinglist.models import Product, Shelf
 
@@ -20,6 +21,7 @@ class ProductForm(ModelForm):
     class Meta:
         model = Product
 
+@login_required
 def edit(request, product_id_str):
     if request.method == 'POST':
         form = ProductForm(request.POST)
@@ -35,6 +37,7 @@ def edit(request, product_id_str):
         context_instance=RequestContext(request),
     )
 
+@login_required
 def add(request, shelf_id=None):
     shelf = None
     if shelf_id is not None:
@@ -55,6 +58,7 @@ def add(request, shelf_id=None):
     )
 
 
+@login_required
 def order_more(request, product_id_str):
     product_id = int(product_id_str)
     product = Product.objects.filter(id=product_id)[0]
@@ -70,6 +74,7 @@ def order_more(request, product_id_str):
     )
 
 
+@login_required
 def increment(request, product_id_str, delta):
     product_id = int(product_id_str)
     product = Product.objects.filter(id=product_id)[0]
@@ -79,6 +84,7 @@ def increment(request, product_id_str, delta):
     return HttpResponseRedirect(reverse('shoppinglist.views.index'))
 
 
+@login_required
 def index(request):
     products = Product.objects.all()
 

@@ -16,6 +16,7 @@ from shoppinglist.models import Product, Shelf
 
 ID_PATTERN = re.compile(r'id-(\d+)')
 
+@login_required
 def index(request):
     shelves = Shelf.objects.all()
     shelves_template = []
@@ -49,6 +50,7 @@ class ShelfForm(ModelForm):
         model = Shelf
 
 
+@login_required
 def add_shelf(request):
     if request.method == 'POST':
         form = ShelfForm(request.POST)
@@ -67,6 +69,7 @@ def add_shelf(request):
         context_instance=RequestContext(request),
     )
 
+@login_required
 def aftermath(request):
     resetted = []
     if 'product_ids' in request.POST:
@@ -86,6 +89,7 @@ def aftermath(request):
                               {'products': products, 'resetted': resetted},
                               context_instance=RequestContext(request))
 
+@login_required
 def update_numbers(request):
     for key in request.POST:
         match = ID_PATTERN.match(key)
