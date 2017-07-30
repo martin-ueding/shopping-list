@@ -1,8 +1,48 @@
-.. Copyright © 2015 Martin Ueding <dev@martin-ueding.de>
+.. Copyright © 2015, 2017 Martin Ueding <dev@martin-ueding.de>
 
 #############
 shopping-list
 #############
+
+Having a plain paper shopping list somewhere in the house works, but having a
+little web application where you can build the shopping list is even nicer:
+
+- It shows you what products you have bought previously, so you can use it as a
+  check list as well.
+
+- Things that you did not buy for some reason get carried on to the next
+  shopping list automatically.
+
+- Several people can edit the list on the device of their choosing since it is
+  build with the Bootstrap__ framework and scales from desktop to phones.
+
+__ http://getbootstrap.com/
+
+- The products are grouped by the shelves in your default supermarket, such
+  that their order is according to the order in the supermarket.
+
+This is what the main screen looks like:
+
+.. figure:: shopping-list-1.png
+
+    Part of the screen where one enteres the desired products.
+
+Then you can display the shopping list any time on the browser on your phone.
+
+.. figure:: shopping-list-2.png
+
+    Part of the generated shopping list.
+
+After you are done shopping, mark the items you bought as done. Or rather,
+uncheck all the elements that you did not get:
+
+.. figure:: shopping-list-3.png
+
+    Part of the aftermath screen.
+
+I have it running on my Raspberry Pi at home, you could also install it on your
+own web server. Since it requires Python Django, it cannot be installed on a
+managed/shared hosting, sorry about that.
 
 Installation
 ============
